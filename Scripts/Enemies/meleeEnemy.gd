@@ -8,7 +8,7 @@ export var health = 2
 
 var hurt = false
 var playerDetected = false
-var can_attcak = true
+var can_attack = true
 var direction =  1
 var motion = Vector2()
 
@@ -31,7 +31,9 @@ func _process(delta):
 		1:
 			
 			$Label.text = "run"
-
+		2:
+			
+			$Label.text = "attack"
 
 
 
@@ -44,6 +46,8 @@ func applyGravity():
 	motion.y += gravity
 
 
+
+
 func applyMovement():
 	
 	
@@ -52,6 +56,14 @@ func applyMovement():
 		$Sprite.flip_h = true
 		$pivot.scale.x = -1
 	elif not $leftRay.is_colliding():
+		direction = 1
+		$Sprite.flip_h = false
+		$pivot.scale.x = 1
+	elif $rightWall.is_colliding():
+		direction = -1
+		$Sprite.flip_h = true
+		$pivot.scale.x = -1
+	elif $leftWall.is_colliding():
 		direction = 1
 		$Sprite.flip_h = false
 		$pivot.scale.x = 1
@@ -69,3 +81,19 @@ func stopMovement():
 	
 	
 	motion.x  = 0
+
+
+func _on_detectorPlayer_body_entered(body):
+	
+	var groups = body.get_groups()
+	
+	if groups.has("player"):
+		playerDetected = true
+
+
+func _on_detectorPlayer_body_exited(body):
+	
+	var groups = body.get_groups()
+	
+	if groups.has("player"):
+		playerDetected = false

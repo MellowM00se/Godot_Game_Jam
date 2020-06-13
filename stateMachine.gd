@@ -39,7 +39,7 @@ func _get_transition(delta):
 			if parent.is_on_floor():
 				if parent.hurt:
 					return states.hurt
-				elif parent.playerDetected and parent.can_attack:
+				elif parent.playerDetected :
 					return states.attack
 				elif parent.motion.x != 0:
 					return states.run
@@ -47,12 +47,12 @@ func _get_transition(delta):
 			if parent.is_on_floor():
 				if parent.hurt:
 					return states.hurt
-				elif parent.playerDetected and parent.can_attack:
+				elif parent.playerDetected :
 					return states.attack
 				elif parent.motion.x == 0:
 					return states.idle
 		states.attack:
-			if not parent.playerDectected or not parent.can_attack:
+			if not parent.playerDetected :
 				return states.idle
 		states.hurt:
 			if not parent.hurt:
@@ -61,6 +61,14 @@ func _get_transition(delta):
 			pass
 
 func _enter_state(new_state, old_state):
+	
+	match new_state:
+		states.idle:
+			parent.get_node("AnimationPlayer").play("idle")
+		states.attack:
+			parent.get_node("AnimationPlayer").play("attack")
+		states.run:
+			parent.get_node("AnimationPlayer").play("idle")
 	pass
 
 
