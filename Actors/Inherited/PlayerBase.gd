@@ -5,9 +5,10 @@ extends "res://Scripts/Classes/Actor.gd"
 enum Move {JUMP, FALL, STAND}
 
 const GRAVITY = 1000.0
-const FALL_MODIFIER = 2.0
+const FALL_MODIFIER = 2.5
 const FRICTION = 500.0
-const MAX_SPEED = 200.0
+const MAX_WALK_SPEED = 200.0
+const MAX_FALL_SPEED = 700.0
 
 export(int) var walk_speed = 100
 export(int) var jump_speed = 500
@@ -30,6 +31,7 @@ func _physics_process(delta):
 # private methods
 func _move_player(delta):
 	velocity.x += _get_x_movement() * walk_speed
+	velocity.x = _apply_friction(delta)
 	velocity.y -= _get_jump() * jump_speed
 	velocity.y += _get_gravity() * delta
 	velocity = _limit_velocity()
@@ -67,10 +69,19 @@ func _get_gravity() -> float:
 
 
 func _limit_velocity() -> Vector2:
-	if velocity.y > 0 and velocity.length() > MAX_SPEED:
-		return velocity.normalized() * MAX_SPEED
-	else:
-		return velocity
+	var new_vel = velocity
+	if abs(new_vel.x) > MAX_WALK_SPEED:
+		new_vel.x = sign(new_vel.x) * MAX_WALK_SPEED
+	if new_vel.y > MAX_FALL_SPEED:
+		new_vel.y = MAX_FALL_SPEED
+	return new_vel
+
+
+func _apply_friction(delta) -> float:
+	var xlen = abs(velocity.x)
+	var xsign = sign(velocity.x)
+	xlen = max(0, xlen - FRICTION * delta)
+	return xlen * xsign
 
 
 func _set_move_state():
