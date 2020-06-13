@@ -11,6 +11,7 @@ signal has_died
 func set_health(value):
 	health = value
 	if value <= 0:
+		emit_signal("has_died")
 		die()
 
 
@@ -19,5 +20,4 @@ func get_health():
 
 
 func die():
-	emit_signal("has_died")
 	queue_free()

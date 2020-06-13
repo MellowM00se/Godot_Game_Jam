@@ -21,6 +21,10 @@ var move_state = Move.STAND
 func _physics_process(delta):
 	if can_move:
 		_move_player(delta)
+		if Input.is_action_pressed("action1"):
+			_use_action1()
+		elif Input.is_action_pressed("action2"):
+			_use_action2()
 
 
 # private methods
@@ -92,5 +96,11 @@ func _set_buffer_jump():
 				$BufferJumpTimer.start()
 
 
+func _use_action1():
+	pass
+
+
+func _use_action2():
+	pass
 
 
