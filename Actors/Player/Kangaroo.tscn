@@ -4,12 +4,12 @@
 [ext_resource path="res://Actors/Inherited/PlayerBase.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 15 )
+extents = Vector2( 32, 64 )
 
 [node name="Kangaroo" instance=ExtResource( 2 )]
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2( 1.5, 2.5 )
+position = Vector2( 6, 6 )
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
