@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/meleeEnemy.tscn" type="PackedScene" id=1]
+
+[node name="level" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="floor" type="StaticBody2D" parent="."]
+position = Vector2( 0, 512 )
+collision_layer = 8
+collision_mask = 15
+
+[node name="Polygon2D" type="Polygon2D" parent="floor"]
+polygon = PoolVector2Array( 128, 512, 128, 608, 128, 640, 1792, 640, 1792, 512 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor"]
+polygon = PoolVector2Array( 128, 512, 1792, 512, 1792, 640, 128, 640 )
+
+[node name="meleeEnemy" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1536, 864 )
