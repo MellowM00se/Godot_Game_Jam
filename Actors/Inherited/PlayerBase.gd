@@ -21,14 +21,18 @@ var move_state = Move.STAND
 func _physics_process(delta):
 	if can_move:
 		_move_player(delta)
+		if Input.is_action_pressed("action1"):
+			_use_action1()
+		elif Input.is_action_pressed("action2"):
+			_use_action2()
 
 
 # private methods
 func _move_player(delta):
 	velocity.x += _get_x_movement() * walk_speed
-	velocity.x = _limit_velocity(delta)
 	velocity.y -= _get_jump() * jump_speed
 	velocity.y += _get_gravity() * delta
+	velocity = _limit_velocity()
 	velocity = move_and_slide(velocity, Vector2.UP)
 	move_state = _set_move_state()
 	_set_coyote_jump()
@@ -62,12 +66,11 @@ func _get_gravity() -> float:
 		return GRAVITY
 
 
-func _limit_velocity(delta) -> float:
-	var xlen = abs(velocity.x)
-	var xsign = sign(velocity.x)
-	xlen = max(0, xlen - FRICTION * delta)
-	xlen = min(xlen, MAX_SPEED)
-	return xlen * xsign
+func _limit_velocity() -> Vector2:
+	if velocity.y > 0 and velocity.length() > MAX_SPEED:
+		return velocity.normalized() * MAX_SPEED
+	else:
+		return velocity
 
 
 func _set_move_state():
@@ -93,5 +96,11 @@ func _set_buffer_jump():
 				$BufferJumpTimer.start()
 
 
+func _use_action1():
+	pass
+
+
+func _use_action2():
+	pass
 
 
