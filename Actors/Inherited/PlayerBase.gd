@@ -4,9 +4,9 @@ extends "res://Scripts/Classes/Actor.gd"
 
 enum Move {JUMP, FALL, STAND}
 
-const FALL_MODIFIER = 2.5
-const FRICTION = 5
-const UNIT_SIZE = 64
+const FALL_MODIFIER := 2.5
+const FRICTION := 5.0
+const UNIT_SIZE := 64.0
 
 export(float, 0.5, 20, 0.5) var jump_height = 1
 export(float, 0.5, 20, 0.5) var jump_width = 1
@@ -21,7 +21,7 @@ var gravity: float
 
 # built-in methods
 func _ready():
-	jump_height = _unit_to_px(jump_height) + 16
+	jump_height = _unit_to_px(jump_height) + (UNIT_SIZE / 4)
 	jump_width = _unit_to_px(jump_width)
 	walk_speed = _unit_to_px(walk_speed)
 	var jump_peak_width = jump_width / 2
