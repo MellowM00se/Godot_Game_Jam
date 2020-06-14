@@ -4,21 +4,32 @@ extends "res://Scripts/Classes/Actor.gd"
 
 enum Move {JUMP, FALL, STAND}
 
-const GRAVITY = 1000.0
 const FALL_MODIFIER = 2.5
-const FRICTION = 500.0
-const MAX_WALK_SPEED = 200.0
-const MAX_FALL_SPEED = 700.0
+const FRICTION = 5
+const UNIT_SIZE = 64
 
-export(int) var walk_speed = 100
-export(int) var jump_speed = 500
+export(float, 0.5, 20, 0.5) var jump_height = 1
+export(float, 0.5, 20, 0.5) var jump_width = 1
+export(float, 0.5, 20, 0.5) var walk_speed = 1
 
 var velocity = Vector2()
 var can_move = true
 var move_state = Move.STAND
+var jump_velocity: float
+var gravity: float
 
 
 # built-in methods
+func _ready():
+	jump_height = _unit_to_px(jump_height) + 16
+	jump_width = _unit_to_px(jump_width)
+	walk_speed = _unit_to_px(walk_speed)
+	var jump_peak_width = jump_width / 2
+	var jump_peak_time = jump_peak_width / walk_speed
+	jump_velocity = (2 * jump_height) / jump_peak_time
+	gravity = (2 * jump_height) / pow(jump_peak_time, 2)
+
+
 func _physics_process(delta):
 	if can_move:
 		_move_player(delta)
@@ -32,7 +43,7 @@ func _physics_process(delta):
 func _move_player(delta):
 	velocity.x += _get_x_movement() * walk_speed
 	velocity.x = _apply_friction(delta)
-	velocity.y -= _get_jump() * jump_speed
+	velocity.y -= _get_jump() * jump_velocity
 	velocity.y += _get_gravity() * delta
 	velocity = _limit_velocity()
 	velocity = move_and_slide(velocity, Vector2.UP)
@@ -62,25 +73,26 @@ func _get_jump() -> int:
 
 
 func _get_gravity() -> float:
-	if move_state == Move.JUMP and not Input.is_action_pressed("jump"):
-		return GRAVITY * FALL_MODIFIER
+	if not Input.is_action_pressed("jump"):
+		return gravity * FALL_MODIFIER
 	else:
-		return GRAVITY
+		return gravity
 
 
 func _limit_velocity() -> Vector2:
 	var new_vel = velocity
-	if abs(new_vel.x) > MAX_WALK_SPEED:
-		new_vel.x = sign(new_vel.x) * MAX_WALK_SPEED
-	if new_vel.y > MAX_FALL_SPEED:
-		new_vel.y = MAX_FALL_SPEED
+	if abs(new_vel.x) > walk_speed:
+		new_vel.x = sign(new_vel.x) * walk_speed
+	if new_vel.y > jump_velocity:
+		new_vel.y = jump_velocity
 	return new_vel
 
 
 func _apply_friction(delta) -> float:
 	var xlen = abs(velocity.x)
 	var xsign = sign(velocity.x)
-	xlen = max(0, xlen - FRICTION * delta)
+	if is_on_floor() and _get_x_movement() == 0:
+		xlen = max(0, xlen - walk_speed * FRICTION * delta)
 	return xlen * xsign
 
 
@@ -115,3 +127,5 @@ func _use_action2():
 	pass
 
 
+func _unit_to_px(value) -> float:
+	return value * UNIT_SIZE
