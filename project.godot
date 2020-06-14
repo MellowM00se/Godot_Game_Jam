@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Scripts/Classes/StateMachine.gd"
+} ]
 _global_script_class_icons={
-
+"StateMachine": ""
 }
 
 [application]
@@ -50,6 +55,17 @@ action2={
 "deadzone": 0.5,
 "events": [  ]
 }
+
+[layer_names]
+
+2d_render/layer_1="player"
+2d_physics/layer_1="player"
+2d_render/layer_2="enemies"
+2d_physics/layer_2="enemies"
+2d_render/layer_3="powerUp"
+2d_physics/layer_3="powerUp"
+2d_render/layer_4="enviroment"
+2d_physics/layer_4="enviroment"
 
 [rendering]
 

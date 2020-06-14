@@ -2,6 +2,8 @@
 
 [ext_resource path="res://Actors/Inherited/PlayerBase.gd" type="Script" id=1]
 
+
+
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="PlayerBase" type="KinematicBody2D"]
