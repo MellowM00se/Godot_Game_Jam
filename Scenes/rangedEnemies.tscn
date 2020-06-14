@@ -1,16 +1,19 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Enemies/rangedEnemies.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Enemies/rangedStateMachine.gd" type="Script" id=2]
 [ext_resource path="res://textures/weapon.png" type="Texture" id=3]
 [ext_resource path="res://textures/character.png" type="Texture" id=4]
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 448, 176 )
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 96 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("pivot/Sprite:scale")
 tracks/0/interp = 1
@@ -46,6 +49,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fireBullet"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -130,6 +147,15 @@ rotation = 1.57079
 scale = Vector2( 0.646465, 0.688172 )
 texture = ExtResource( 3 )
 
+[node name="detector" type="Area2D" parent="pivot"]
+position = Vector2( 432, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/detector"]
+shape = SubResource( 5 )
+
+[node name="attackPos" type="Position2D" parent="pivot"]
+position = Vector2( 160, 0 )
+
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.537255, 0.972549, 0.180392, 1 )
 scale = Vector2( 0.642, 0.843 )
@@ -168,3 +194,10 @@ script = ExtResource( 2 )
 anims/attack = SubResource( 2 )
 anims/idle = SubResource( 3 )
 anims/reload = SubResource( 4 )
+
+[node name="reload" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+[connection signal="body_entered" from="pivot/detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="pivot/detector" to="." method="_on_detector_body_exited"]
+[connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]

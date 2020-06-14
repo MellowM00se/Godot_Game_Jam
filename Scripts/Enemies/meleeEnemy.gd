@@ -103,4 +103,4 @@ func _on_attackBox_body_entered(body):
 	var groups = body.get_groups()
 	
 	if groups.has("player"):
-		body.knockBack(knockBack * direction)
+		pass

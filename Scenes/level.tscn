@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/meleeEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/rangedEnemies.tscn" type="PackedScene" id=3]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.5
@@ -18,13 +19,13 @@ position = Vector2( 1280, 800 )
 [node name="meleeEnemy2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 256, 864 )
 
-[node name="meleeEnemy3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 2592, 0 )
+[node name="rangedEnemies" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2240, -38.5 )
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." groups=[
 "player",
 ]]
-position = Vector2( 0, -64 )
+position = Vector2( 2048, -576 )
 mass = 1.0102
 physics_material_override = SubResource( 1 )
 

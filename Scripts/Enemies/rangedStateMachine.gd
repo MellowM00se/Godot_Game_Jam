@@ -56,21 +56,21 @@ func _get_transition(delta):
 	match state:
 		
 		states.idle:
-			if parent.playerDetected and parent.can_attack:
+			if parent.playerDetected and parent.canAttack:
 				return states.attack
-			elif parent.playerDetected and not parent.can_attack:
+			elif parent.playerDetected and not parent.canAttack:
 				return states.reload
 			elif parent.motion.x != 0:
 				return states.patrol
 		states.patrol:
-			if parent.playerDetected and parent.can_attack:
+			if parent.playerDetected and parent.canAttack:
 				return states.attack
-			elif parent.playerDetected and not parent.can_attack:
+			elif parent.playerDetected and not parent.canAttack:
 				return states.reload
 			elif parent.motion.x == 0:
 				return states.idle
 		states.attack:
-			if not parent.can_attack:
+			if not parent.canAttack:
 				return states.reload
 			elif not parent.playerDetected:
 				return states.idle
@@ -80,7 +80,7 @@ func _get_transition(delta):
 			
 			if not parent.playerDetected:
 				return states.idle
-			elif parent.can_attack:
+			elif parent.canAttack:
 				return states.attack
 		
 		states.hurt:
