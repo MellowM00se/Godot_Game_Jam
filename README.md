@@ -5,7 +5,9 @@
   - Player *(Player-specific files)*
 - Assets *(All assets - sounds, sprites, etc)*
   - Fonts
-  - Music
+  - Audio
+    - Effects
+    - Music
   - SFX
   - Sprites
 - Environment *(Stages and such)*
