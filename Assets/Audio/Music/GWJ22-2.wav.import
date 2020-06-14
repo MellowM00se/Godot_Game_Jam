@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/GWJ22-2.wav-711ed6adba109cd1de74d0917118ec1d.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/GWJ22-2.wav"
+dest_files=[ "res://.import/GWJ22-2.wav-711ed6adba109cd1de74d0917118ec1d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
