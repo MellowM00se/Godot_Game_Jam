@@ -1,0 +1,170 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Enemies/rangedEnemies.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Enemies/rangedStateMachine.gd" type="Script" id=2]
+[ext_resource path="res://textures/weapon.png" type="Texture" id=3]
+[ext_resource path="res://textures/character.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 96 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("pivot/Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.646465, 0.688172 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("pivot/Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1.90735e-06, 0 ), Vector2( -96, 0 ), Vector2( 112, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("pivot/Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("pivot/Sprite:centered")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("pivot/Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("pivot/Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7.62939e-06, 5.82077e-11 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "reload"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("pivot/Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("pivot/Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 112, 0 ), Vector2( 7.62939e-06, 5.82077e-11 ) ]
+}
+
+[node name="rangedEnemies" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource( 1 )
+
+[node name="pivot" type="Position2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="pivot"]
+position = Vector2( 7.62939e-06, 5.82077e-11 )
+rotation = 1.57079
+scale = Vector2( 0.646465, 0.688172 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.537255, 0.972549, 0.180392, 1 )
+scale = Vector2( 0.642, 0.843 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 32 )
+shape = SubResource( 1 )
+
+[node name="rightGroundRay" type="RayCast2D" parent="."]
+position = Vector2( 128, 0 )
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 8
+
+[node name="leftGroundRay" type="RayCast2D" parent="."]
+position = Vector2( -128, 0 )
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 8
+
+[node name="rightWallRay" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 200, 0 )
+collision_mask = 8
+
+[node name="leftWallRay" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -200, 0 )
+collision_mask = 8
+
+[node name="rangedStateMachine" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/reload = SubResource( 4 )

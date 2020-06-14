@@ -11,7 +11,7 @@ var playerDetected = false
 var can_attack = true
 var direction =  1
 var motion = Vector2()
-
+var knockBack = 200
 
 
 
@@ -80,7 +80,7 @@ func _physics_process(delta):
 func stopMovement():
 	
 	
-	motion.x  = 0
+	motion.x  = lerp(motion.x, 0, 0.2)
 
 
 func _on_detectorPlayer_body_entered(body):
@@ -97,3 +97,10 @@ func _on_detectorPlayer_body_exited(body):
 	
 	if groups.has("player"):
 		playerDetected = false
+
+
+func _on_attackBox_body_entered(body):
+	var groups = body.get_groups()
+	
+	if groups.has("player"):
+		body.knockBack(knockBack * direction)
