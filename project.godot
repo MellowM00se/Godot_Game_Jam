@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://Scripts/Classes/stateMachine.gd"
+"path": "res://Scripts/Classes/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "StateMachine": ""

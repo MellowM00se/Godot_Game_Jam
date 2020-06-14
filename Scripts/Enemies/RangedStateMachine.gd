@@ -1,4 +1,4 @@
-extends "res://Scripts/Classes/stateMachine.gd"
+extends "res://Scripts/Classes/StateMachine.gd"
 
 
 
@@ -17,44 +17,44 @@ func _ready():
 
 
 func _state_logic(delta):
-	
-	
+
+
 	match state:
-		
+
 		states.idle:
-			
+
 			parent.applyGravity()
 			parent.applyMovement()
 		states.patrol:
 			parent.applyGravity()
 			parent.applyMovement()
-		
+
 		states.attack:
-			
+
 			parent.applyGravity()
 			parent.stopMovement()
-		
+
 		states.reload:
-			
+
 			parent.applyGravity()
 			parent.stopMovement()
-		
+
 		states.hurt:
-			
+
 			parent.applyGravity()
 			parent.stopMovement()
-		
+
 		states.die:
-			
+
 			parent.applyGravity()
 			parent.stopMovement()
 
 
 func _get_transition(delta):
-	
-	
+
+
 	match state:
-		
+
 		states.idle:
 			if parent.playerDetected and parent.canAttack:
 				return states.attack
@@ -74,25 +74,25 @@ func _get_transition(delta):
 				return states.reload
 			elif not parent.playerDetected:
 				return states.idle
-			
-			
+
+
 		states.reload:
-			
+
 			if not parent.playerDetected:
 				return states.idle
 			elif parent.canAttack:
 				return states.attack
-		
+
 		states.hurt:
 			return null
 		states.die:
 			return null
 
 func _enter_state(new_state, old_state):
-	
-	
+
+
 	match  new_state:
-		
+
 		states.idle:
 			parent.get_node("AnimationPlayer").play("idle")
 		states.attack:

@@ -1,9 +1,15 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Scripts/Enemies/rangedEnemies.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Enemies/rangedStateMachine.gd" type="Script" id=2]
-[ext_resource path="res://textures/weapon.png" type="Texture" id=3]
-[ext_resource path="res://textures/character.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Enemies/RangedEnemies.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Enemies/RangedStateMachine.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Weapon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Character.png" type="Texture" id=4]
+
+
+
+
+
+
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 448, 176 )

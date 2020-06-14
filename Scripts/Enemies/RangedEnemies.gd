@@ -7,7 +7,7 @@ export var speed = 150
 
 
 
-var bulletPath = preload("res://Scenes/bullet.tscn")
+var bulletPath = preload("res://Actors/Enemies/Bullet.tscn")
 var hurt = false
 var playerDetected = false
 var canAttack = true
@@ -28,19 +28,19 @@ func _ready():
 
 func fireBullet():
 	var bullet = bulletPath.instance()
-	
+
 	bullet.position =  $pivot/attackPos.global_position
 	bullet.direction = direction
 	get_parent().add_child(bullet)
 	canAttack = false
 	$reload.start()
-	
+
 
 func _physics_process(delta):
-	
-	
-	
-	
+
+
+
+
 	motion = move_and_slide(motion,UP)
 
 
@@ -53,7 +53,7 @@ func applyGravity():
 
 
 func applyMovement():
-	
+
 	if not $rightGroundRay.is_colliding():
 		direction = -1
 		$Sprite.flip_h = true
@@ -70,31 +70,31 @@ func applyMovement():
 		direction = 1
 		$Sprite.flip_h = false
 		$pivot.scale.x = 1
-		
-	
-	
+
+
+
 	motion.x = speed *direction
 
 
 
 
 func stopMovement():
-	
+
 	motion.x = lerp(motion.x ,0,0.2)
 
 
 func _on_detector_body_entered(body):
-	
+
 	var groups = body.get_groups()
-	
+
 	if groups.has("player"):
 		playerDetected = true
 
 
 func _on_detector_body_exited(body):
-	
+
 	var groups = body.get_groups()
-	
+
 	if groups.has("player"):
 		playerDetected = false
 

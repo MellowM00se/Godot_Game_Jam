@@ -1,4 +1,4 @@
-extends "res://Scripts/Classes/stateMachine.gd"
+extends "res://Scripts/Classes/StateMachine.gd"
 
 
 
@@ -15,7 +15,7 @@ func _ready():
 
 
 func _state_logic(delta):
-	
+
 	match state:
 		states.idle:
 			parent.applyGravity()
@@ -33,7 +33,7 @@ func _state_logic(delta):
 
 
 func _get_transition(delta):
-	
+
 	match state:
 		states.idle:
 			if parent.is_on_floor():
@@ -61,7 +61,7 @@ func _get_transition(delta):
 			pass
 
 func _enter_state(new_state, old_state):
-	
+
 	match new_state:
 		states.idle:
 			parent.get_node("AnimationPlayer").play("idle")

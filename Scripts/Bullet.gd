@@ -8,12 +8,12 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	
+
 	if direction ==1:
 		$Sprite.flip_h = true
 	elif direction == -1:
 		$Sprite.flip_h = false
-	
-	
-	
+
+
+
 	position.x += (direction * speed)

@@ -20,19 +20,19 @@ const UP = Vector2(0,-1)
 # Called when the node enters the scene tree for the first time.
 
 func _process(delta):
-	
-	
+
+
 	match $stateMachine.state:
-		
+
 		0:
-			
+
 			$Label.text  = "idle"
-		
+
 		1:
-			
+
 			$Label.text = "run"
 		2:
-			
+
 			$Label.text = "attack"
 
 
@@ -42,15 +42,15 @@ func _ready():
 
 
 func applyGravity():
-	
+
 	motion.y += gravity
 
 
 
 
 func applyMovement():
-	
-	
+
+
 	if not $rightRay.is_colliding():
 		direction = -1
 		$Sprite.flip_h = true
@@ -71,36 +71,36 @@ func applyMovement():
 
 
 func _physics_process(delta):
-	
-	
-	
+
+
+
 	motion = move_and_slide(motion,UP)
 
 
 func stopMovement():
-	
-	
+
+
 	motion.x  = lerp(motion.x, 0, 0.2)
 
 
 func _on_detectorPlayer_body_entered(body):
-	
+
 	var groups = body.get_groups()
-	
+
 	if groups.has("player"):
 		playerDetected = true
 
 
 func _on_detectorPlayer_body_exited(body):
-	
+
 	var groups = body.get_groups()
-	
+
 	if groups.has("player"):
 		playerDetected = false
 
 
 func _on_attackBox_body_entered(body):
 	var groups = body.get_groups()
-	
+
 	if groups.has("player"):
 		pass
