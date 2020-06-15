@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Actors/Inherited/PlayerBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Sprites/Player/Chameleon.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Player/Chameleon.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Walk"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/Idle/node = SubResource( 3 )
+states/Idle/position = Vector2( 565, 112 )
+states/Walk/node = SubResource( 4 )
+states/Walk/position = Vector2( 564.453, 277 )
+transitions = [ "Idle", "Walk", SubResource( 5 ), "Walk", "Idle", SubResource( 6 ) ]
+start_node = "Idle"
+graph_offset = Vector2( 29, 53.03 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 38, 28 )
+
+[node name="Chameleon" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+jump_height = 3.0
+jump_width = 4.5
+walk_speed = 5.5
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 4
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+anims/Idle = SubResource( 1 )
+anims/Walk = SubResource( 2 )
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" index="0"]
+tree_root = SubResource( 7 )
+anim_player = NodePath("..")
+active = true
+parameters/playback = SubResource( 8 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 1, 18 )
+shape = SubResource( 9 )
