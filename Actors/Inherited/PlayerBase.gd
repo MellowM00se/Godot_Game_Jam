@@ -23,6 +23,8 @@ var state_anim: AnimationNodeStateMachinePlayback
 # built-in methods
 func _ready():
 	_setup()
+	state_anim = $AnimationPlayer/AnimationTree.get("parameters/playback")
+	$AnimationPlayer/AnimationTree.active = true
 	jump_height = _unit_to_px(jump_height) + (UNIT_SIZE / 4)
 	jump_width = _unit_to_px(jump_width)
 	walk_speed = _unit_to_px(walk_speed)
@@ -41,8 +43,7 @@ func _physics_process(delta):
 			_use_action1()
 		elif Input.is_action_pressed("action2"):
 			_use_action2()
-		if state_anim != null:
-			_anim_state()
+		_anim_state()
 
 # private methods
 func _setup():

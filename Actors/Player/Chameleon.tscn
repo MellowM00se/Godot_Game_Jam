@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Actors/Inherited/PlayerBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Sprites/Player/Chameleon.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Player/Chameleon.gd" type="Script" id=3]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=3]
+resource_local_to_scene = true
 resource_name = "Idle"
 length = 0.8
 loop = true
@@ -21,7 +22,8 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=4]
+resource_local_to_scene = true
 resource_name = "Walk"
 length = 0.8
 loop = true
@@ -38,28 +40,9 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=3]
-animation = "Idle"
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "Walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
-
-[sub_resource type="AnimationNodeStateMachine" id=7]
-states/Idle/node = SubResource( 3 )
-states/Idle/position = Vector2( 565, 112 )
-states/Walk/node = SubResource( 4 )
-states/Walk/position = Vector2( 564.453, 277 )
-transitions = [ "Idle", "Walk", SubResource( 5 ), "Walk", "Idle", SubResource( 6 ) ]
-start_node = "Idle"
-graph_offset = Vector2( 29, 53.03 )
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
-
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 38, 28 )
 
 [node name="Chameleon" instance=ExtResource( 1 )]
@@ -74,16 +57,13 @@ vframes = 2
 hframes = 4
 frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
-anims/Idle = SubResource( 1 )
-anims/Walk = SubResource( 2 )
+[node name="AnimationPlayer" parent="." index="1"]
+anims/Idle = SubResource( 3 )
+anims/Walk = SubResource( 4 )
 
-[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" index="0"]
-tree_root = SubResource( 7 )
-anim_player = NodePath("..")
-active = true
-parameters/playback = SubResource( 8 )
+[node name="AnimationTree" parent="AnimationPlayer" index="0"]
+parameters/playback = SubResource( 1 )
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( 1, 18 )
-shape = SubResource( 9 )
+shape = SubResource( 2 )
