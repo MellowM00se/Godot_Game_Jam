@@ -4,13 +4,6 @@
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Actors/Enemies/RangedEnemies.tscn" type="PackedScene" id=3]
 
-
-
-
-
-
-
-
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.5
 
@@ -32,7 +25,7 @@ position = Vector2( 2240, -38.5 )
 [node name="RigidBody2D" type="RigidBody2D" parent="." groups=[
 "player",
 ]]
-position = Vector2( 2048, -576 )
+position = Vector2( 4359.27, -539.181 )
 mass = 1.0102
 physics_material_override = SubResource( 1 )
 
@@ -56,15 +49,16 @@ polygon = PoolVector2Array( 128, 512, 128, 608, 128, 640, 1792, 640, 1792, 512 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor/floor"]
 polygon = PoolVector2Array( 128, 512, 1792, 512, 1792, 640, 128, 640 )
 
-[node name="floor2" type="StaticBody2D" parent="floor"]
+[node name="floor2" type="StaticBody2D" parent="floor/floor"]
+position = Vector2( 0, -512 )
 collision_layer = 8
 collision_mask = 15
 
-[node name="Polygon2D" type="Polygon2D" parent="floor/floor2"]
+[node name="Polygon2D" type="Polygon2D" parent="floor/floor/floor2"]
 color = Color( 0, 0.27451, 1, 1 )
 polygon = PoolVector2Array( 1792, 1024, 1792, 1152, 2048, 1152, 2048, 1152, 2048, 256, 1792, 256 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor/floor2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor/floor/floor2"]
 polygon = PoolVector2Array( 1792, 1152, 2048, 1152, 2048, 256, 1792, 256 )
 
 [node name="floor4" type="StaticBody2D" parent="floor"]
@@ -77,6 +71,18 @@ color = Color( 0, 0.298039, 1, 1 )
 polygon = PoolVector2Array( 128, 512, 128, 608, 128, 640, 1792, 640, 1792, 512 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor/floor4"]
+polygon = PoolVector2Array( 128, 512, 1792, 512, 1792, 640, 128, 640 )
+
+[node name="floor5" type="StaticBody2D" parent="floor"]
+position = Vector2( 3185.02, -384 )
+collision_layer = 8
+collision_mask = 15
+
+[node name="Polygon2D" type="Polygon2D" parent="floor/floor5"]
+color = Color( 0, 0.298039, 1, 1 )
+polygon = PoolVector2Array( 128, 512, 128, 608, 128, 640, 1792, 640, 1792, 512 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor/floor5"]
 polygon = PoolVector2Array( 128, 512, 1792, 512, 1792, 640, 128, 640 )
 
 [node name="floor3" type="StaticBody2D" parent="floor"]
