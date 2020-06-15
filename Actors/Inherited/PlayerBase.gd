@@ -17,10 +17,12 @@ var can_move = true
 var move_state = Move.STAND
 var jump_velocity: float
 var gravity: float
+var state_anim: AnimationNodeStateMachinePlayback
 
 
 # built-in methods
 func _ready():
+	_setup()
 	jump_height = _unit_to_px(jump_height) + (UNIT_SIZE / 4)
 	jump_width = _unit_to_px(jump_width)
 	walk_speed = _unit_to_px(walk_speed)
@@ -28,6 +30,8 @@ func _ready():
 	var jump_peak_time = jump_peak_width / walk_speed
 	jump_velocity = (2 * jump_height) / jump_peak_time
 	gravity = (2 * jump_height) / pow(jump_peak_time, 2)
+	if state_anim == null:
+		print("WARNING: State machine for animation not set!")
 
 
 func _physics_process(delta):
@@ -37,9 +41,14 @@ func _physics_process(delta):
 			_use_action1()
 		elif Input.is_action_pressed("action2"):
 			_use_action2()
-
+		if state_anim != null:
+			_anim_state()
 
 # private methods
+func _setup():
+	pass
+
+
 func _move_player(delta):
 	velocity.x += _get_x_movement() * walk_speed
 	velocity.x = _apply_friction(delta)
@@ -50,6 +59,18 @@ func _move_player(delta):
 	move_state = _set_move_state()
 	_set_coyote_jump()
 	_set_buffer_jump()
+
+
+func _anim_state():
+	if _get_x_movement() < 0 and $Sprite.flip_h == false:
+		$Sprite.flip_h = true
+	elif _get_x_movement() > 0 and $Sprite.flip_h == true:
+		$Sprite.flip_h = false
+	if is_on_floor():
+		if _get_x_movement() == 0:
+			state_anim.travel("Idle")
+		else:
+			state_anim.travel("Walk")
 
 
 func _get_x_movement() -> int:
