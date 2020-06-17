@@ -19,7 +19,7 @@ var jump_velocity: float
 var gravity: float
 
 onready var state_anim = $AnimationPlayer/AnimationTree.get("parameters/playback")
-onready var tween = $Tween
+onready var tween: Tween = $Tween
 
 # built-in methods
 func _ready():
@@ -32,8 +32,6 @@ func _ready():
 	var jump_peak_time = jump_peak_width / walk_speed
 	jump_velocity = (2 * jump_height) / jump_peak_time
 	gravity = (2 * jump_height) / pow(jump_peak_time, 2)
-	if state_anim == null:
-		print("WARNING: State machine for animation not set!")
 
 
 func _physics_process(delta):
@@ -72,8 +70,8 @@ func _anim_state():
 			state_anim.travel("Walk")
 
 
-func _get_x_movement() -> int:
-	var movement := 0
+func _get_x_movement() -> float:
+	var movement := 0.0
 	if Input.is_action_pressed("move_left"):
 		movement -= 1
 	if Input.is_action_pressed("move_right"):
