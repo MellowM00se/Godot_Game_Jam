@@ -17,13 +17,13 @@ var can_move = true
 var move_state = Move.STAND
 var jump_velocity: float
 var gravity: float
-var state_anim: AnimationNodeStateMachinePlayback
 
+onready var state_anim = $AnimationPlayer/AnimationTree.get("parameters/playback")
+onready var tween = $Tween
 
 # built-in methods
 func _ready():
 	_setup()
-	state_anim = $AnimationPlayer/AnimationTree.get("parameters/playback")
 	$AnimationPlayer/AnimationTree.active = true
 	jump_height = _unit_to_px(jump_height) + (UNIT_SIZE / 4)
 	jump_width = _unit_to_px(jump_width)
@@ -39,10 +39,8 @@ func _ready():
 func _physics_process(delta):
 	if can_move:
 		_move_player(delta)
-		if Input.is_action_pressed("action1"):
-			_use_action1()
-		elif Input.is_action_pressed("action2"):
-			_use_action2()
+		_use_action1()
+		_use_action2()
 		_anim_state()
 
 # private methods
