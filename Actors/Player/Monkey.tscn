@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Actors/Inherited/PlayerBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Sprites/Player/Monkey.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Player/Monkey.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_local_to_scene = true
+resource_name = "Idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_local_to_scene = true
+resource_name = "Jump"
+length = 0.4
+loop = true
+
+[sub_resource type="Animation" id=3]
+resource_local_to_scene = true
+resource_name = "Walk"
+length = 0.6
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 42, 62 )
+
+[node name="Monkey" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+jump_height = 4.5
+jump_width = 5.0
+walk_speed = 5.0
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 4
+frame = 4
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/Idle = SubResource( 1 )
+anims/Jump = SubResource( 2 )
+anims/Walk = SubResource( 3 )
+
+[node name="AnimationTree" parent="AnimationPlayer" index="0"]
+parameters/playback = SubResource( 4 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 10, 14 )
+shape = SubResource( 5 )
+
+[node name="Action1" type="Node2D" parent="." index="6"]
+
+[node name="WaitTimer" type="Timer" parent="Action1" index="0"]
+wait_time = 0.75
+one_shot = true
+
+[node name="PoopPos" type="Position2D" parent="Action1" index="1"]
+position = Vector2( 52, -48 )
