@@ -68,6 +68,8 @@ func _anim_state():
 			state_anim.travel("Idle")
 		else:
 			state_anim.travel("Walk")
+	else:
+		state_anim.travel("Jump")
 
 
 func _get_x_movement() -> float:
