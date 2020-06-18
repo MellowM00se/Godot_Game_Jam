@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Actors/Inherited/PlayerBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Sprites/Player/Chameleon.png" type="Texture" id=2]
@@ -20,6 +20,24 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_local_to_scene = true
+resource_name = "Jump"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -77,11 +95,12 @@ walk_speed = 5.5
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-vframes = 2
+vframes = 3
 hframes = 4
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/Idle = SubResource( 1 )
+anims/Jump = SubResource( 7 )
 anims/Walk = SubResource( 2 )
 
 [node name="AnimationTree" parent="AnimationPlayer" index="0"]
