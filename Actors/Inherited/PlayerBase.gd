@@ -81,15 +81,15 @@ func _get_x_movement() -> float:
 	return movement
 
 
-func _get_jump() -> int:
+func _get_jump() -> float:
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
-			return 1
+			return 1.0
 		elif $BufferJumpTimer.is_stopped() == false:
-			return 1
+			return 1.0
 	elif $CoyoteTimer.is_stopped() == false and Input.is_action_just_pressed("jump"):
-			return 1
-	return 0
+			return 1.0
+	return 0.0
 
 
 func _get_gravity() -> float:

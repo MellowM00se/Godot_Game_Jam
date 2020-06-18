@@ -77,6 +77,14 @@ func _limit_velocity() -> Vector2:
 	return new_vel
 
 
+func _get_jump() -> float:
+	var jump = ._get_jump()
+	if action1.is_hiding:
+		return jump * action1.hide_move_modifier
+	else:
+		return jump
+
+
 func _modulate(obj: CanvasItem, to: Color):
 	var _s = tween.stop(obj, "modulate")
 	_s = tween.interpolate_property(

@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_local_to_scene = true
 resource_name = "Jump"
 length = 0.4
@@ -40,9 +40,8 @@ tracks/0/keys = {
 "values": [ 8 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 resource_local_to_scene = true
-resource_name = "Walk"
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -58,12 +57,12 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 38, 28 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.658824, 0.670588, 0.321569, 0.792157 )
 border_color = Color( 0.113725, 0.0352941, 0.0352941, 1 )
 corner_radius_top_left = 5
@@ -71,7 +70,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.92549, 0.4, 0.219608, 0.14902 )
 border_width_left = 2
 border_width_top = 2
@@ -102,15 +101,15 @@ hframes = 4
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/Idle = SubResource( 1 )
-anims/Jump = SubResource( 7 )
-anims/Walk = SubResource( 2 )
+anims/Jump = SubResource( 2 )
+anims/Walk = SubResource( 3 )
 
 [node name="AnimationTree" parent="AnimationPlayer" index="0"]
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 4 )
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( 1, 18 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Action1" type="Node2D" parent="." index="6"]
 
@@ -127,8 +126,8 @@ margin_top = -70.0
 margin_right = 30.0
 margin_bottom = -56.0
 rect_min_size = Vector2( 60, 0 )
-custom_styles/fg = SubResource( 5 )
-custom_styles/bg = SubResource( 6 )
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
 value = 50.0
 percent_visible = false
 __meta__ = {
