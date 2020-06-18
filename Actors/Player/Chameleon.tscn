@@ -92,6 +92,8 @@ script = ExtResource( 3 )
 jump_height = 3.0
 jump_width = 4.5
 walk_speed = 5.5
+hide_duration = 2.0
+hide_restore_factor = 1.5
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
@@ -116,6 +118,7 @@ shape = SubResource( 4 )
 one_shot = true
 
 [node name="HideDisableTimer" type="Timer" parent="Action1" index="1"]
+wait_time = 2.0
 
 [node name="ProgressBar" type="ProgressBar" parent="Action1" index="2"]
 modulate = Color( 1, 1, 1, 0 )

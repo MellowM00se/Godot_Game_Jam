@@ -15,9 +15,7 @@ var action1 := {
 func _process(delta):
 	if not action1.is_hiding and action1.can_hide:
 		_restore_hiding(delta)
-	if $Action1/HideTimer.is_stopped() == false:
-		action1.hide_current_timer = $Action1/HideTimer.time_left
-	$Action1/ProgressBar.value = action1.hide_current_timer
+	_adjust_action1_bar()
 
 
 # private methods
@@ -36,14 +34,6 @@ func _use_action1():
 		action1.hide_anim_time = $Action1/HideTimer.time_left
 		$Action1/HideTimer.stop()
 		_unhide()
-
-
-func _get_x_movement() -> float:
-	var new_mov = ._get_x_movement()
-	if action1.is_hiding:
-		return new_mov * action1.hide_move_modifier
-	else:
-		return new_mov
 
 
 func _restore_hiding(delta):
@@ -65,6 +55,12 @@ func _unhide():
 	_modulate($Sprite, Color.white)
 
 
+func _adjust_action1_bar():
+	if $Action1/HideTimer.is_stopped() == false:
+		action1.hide_current_timer = $Action1/HideTimer.time_left
+	$Action1/ProgressBar.value = action1.hide_current_timer
+
+
 func _hide_bar():
 	_modulate($Action1/ProgressBar, Color(1, 1, 1, 0))
 
@@ -73,8 +69,16 @@ func _show_bar():
 	_modulate($Action1/ProgressBar, Color.white)
 
 
+func _limit_velocity() -> Vector2:
+	var new_vel = ._limit_velocity()
+	if action1.is_hiding:
+		if abs(new_vel.x) > walk_speed * action1.hide_move_modifier:
+			new_vel.x = sign(new_vel.x) * walk_speed * action1.hide_move_modifier
+	return new_vel
+
+
 func _modulate(obj: CanvasItem, to: Color):
-	var _s = tween.stop($Sprite, "modulate")
+	var _s = tween.stop(obj, "modulate")
 	_s = tween.interpolate_property(
 		obj, "modulate", $Sprite.modulate, to, action1.hide_anim_time
 	)
