@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Actors/Enemies/MeleeEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Actors/Enemies/RangedEnemies.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Actors/Enemies/SurCamera.tscn" type="PackedScene" id=4]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.5
@@ -25,7 +26,7 @@ position = Vector2( 2240, -38.5 )
 [node name="RigidBody2D" type="RigidBody2D" parent="." groups=[
 "player",
 ]]
-position = Vector2( 4359.27, -539.181 )
+position = Vector2( 2095.47, -14.2415 )
 mass = 1.0102
 physics_material_override = SubResource( 1 )
 
@@ -96,3 +97,7 @@ polygon = PoolVector2Array( 1792, 1024, 1792, 1152, 2048, 1152, 2048, 1152, 2048
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor/floor3"]
 polygon = PoolVector2Array( 1792, 1152, 2048, 1152, 2048, 256, 1792, 256 )
+
+[node name="Camera" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2350.13, -649.252 )
+scale = Vector2( 2, 2 )
