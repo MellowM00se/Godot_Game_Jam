@@ -86,6 +86,18 @@ polygon = PoolVector2Array( 128, 512, 128, 608, 128, 640, 1792, 640, 1792, 512 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor/floor5"]
 polygon = PoolVector2Array( 128, 512, 1792, 512, 1792, 640, 128, 640 )
 
+[node name="floor6" type="StaticBody2D" parent="floor"]
+position = Vector2( 339.721, -835.901 )
+collision_layer = 8
+collision_mask = 15
+
+[node name="Polygon2D" type="Polygon2D" parent="floor/floor6"]
+color = Color( 0, 0.298039, 1, 1 )
+polygon = PoolVector2Array( 128, 512, 128, 608, 128, 640, 1792, 640, 1792, 512 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor/floor6"]
+polygon = PoolVector2Array( 128, 512, 1792, 512, 1792, 640, 128, 640 )
+
 [node name="floor3" type="StaticBody2D" parent="floor"]
 position = Vector2( -1920, 0 )
 collision_layer = 8
