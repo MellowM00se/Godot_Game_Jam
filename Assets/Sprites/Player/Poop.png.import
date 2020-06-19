@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Monkey (Run).png-c43a31144a7da49ac1a79f3d3a55c652.stex"
+path="res://.import/Poop.png-44be05153a2beb14e2b7cc50b4fa38d8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Player/Monkey (Run).png"
-dest_files=[ "res://.import/Monkey (Run).png-c43a31144a7da49ac1a79f3d3a55c652.stex" ]
+source_file="res://Assets/Sprites/Player/Poop.png"
+dest_files=[ "res://.import/Poop.png-44be05153a2beb14e2b7cc50b4fa38d8.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Monkey (Idle).png-58ab7a18f682de7253872b73aad644c0.stex"
+path="res://.import/Monkey.png-1714e559aa1591ee86bac3e08df3181a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Player/Monkey (Idle).png"
-dest_files=[ "res://.import/Monkey (Idle).png-58ab7a18f682de7253872b73aad644c0.stex" ]
+source_file="res://Assets/Sprites/Player/Monkey.png"
+dest_files=[ "res://.import/Monkey.png-1714e559aa1591ee86bac3e08df3181a.stex" ]
 
 [params]
 
