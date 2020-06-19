@@ -82,4 +82,4 @@ wait_time = 0.75
 one_shot = true
 
 [node name="PoopPos" type="Position2D" parent="Action1" index="1"]
-position = Vector2( 52, -48 )
+position = Vector2( 42, -39 )
