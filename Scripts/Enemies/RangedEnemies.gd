@@ -28,10 +28,10 @@ func _ready():
 
 func fireBullet():
 	var bullet = bulletPath.instance()
-
-	bullet.position =  $pivot/attackPos.global_position
-	bullet.direction = direction
 	get_parent().add_child(bullet)
+	bullet.global_position =  $pivot.global_position
+	bullet.direction = direction
+	
 	canAttack = false
 	$reload.start()
 
