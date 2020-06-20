@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Chameleon (Jump).png-0948c9475abcb6bed7c34252624ef262.stex"
+path="res://.import/Wall-basic.png-1f0be5270c4a271a359d6d582ddbc103.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Player/Chameleon (Jump).png"
-dest_files=[ "res://.import/Chameleon (Jump).png-0948c9475abcb6bed7c34252624ef262.stex" ]
+source_file="res://Assets/Tilesets/Wall-basic.png"
+dest_files=[ "res://.import/Wall-basic.png-1f0be5270c4a271a359d6d582ddbc103.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

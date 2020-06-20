@@ -1,0 +1,137 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Actors/Inherited/PlayerBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Sprites/Player/Chameleon.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Player/Chameleon.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_local_to_scene = true
+resource_name = "Idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_local_to_scene = true
+resource_name = "Jump"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_local_to_scene = true
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 38, 28 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.658824, 0.670588, 0.321569, 0.792157 )
+border_color = Color( 0.113725, 0.0352941, 0.0352941, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.92549, 0.4, 0.219608, 0.14902 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.113725, 0.0352941, 0.0352941, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[node name="Chameleon" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+jump_height = 3.0
+jump_width = 4.5
+walk_speed = 5.5
+hide_duration = 2.0
+hide_restore_factor = 1.5
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+vframes = 3
+hframes = 4
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/Idle = SubResource( 1 )
+anims/Jump = SubResource( 2 )
+anims/Walk = SubResource( 3 )
+
+[node name="AnimationTree" parent="AnimationPlayer" index="0"]
+parameters/playback = SubResource( 4 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 1, 18 )
+shape = SubResource( 5 )
+
+[node name="Action1" type="Node2D" parent="." index="6"]
+
+[node name="HideTimer" type="Timer" parent="Action1" index="0"]
+one_shot = true
+
+[node name="HideDisableTimer" type="Timer" parent="Action1" index="1"]
+wait_time = 2.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Action1" index="2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -30.0
+margin_top = -70.0
+margin_right = 30.0
+margin_bottom = -56.0
+rect_min_size = Vector2( 60, 0 )
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="Action1/HideTimer" to="." method="_on_HideTimer_timeout"]
+[connection signal="timeout" from="Action1/HideDisableTimer" to="." method="_on_HideDisableTimer_timeout"]
