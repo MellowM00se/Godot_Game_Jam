@@ -117,12 +117,14 @@ offset = Vector2( 0, -119.04 )
 
 [node name="detectorPlayer" type="Area2D" parent="pivot"]
 position = Vector2( 176, 32 )
+collision_mask = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/detectorPlayer"]
 shape = SubResource( 2 )
 
 [node name="attackBox" type="Area2D" parent="pivot"]
 position = Vector2( 176, 32 )
+collision_mask = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/attackBox"]
 shape = SubResource( 2 )
