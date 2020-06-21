@@ -35,10 +35,6 @@ window/stretch/aspect="keep"
 
 enabled=PoolStringArray( "luisboch.field_of_view" )
 
-[editor_plugins]
-
-enabled=PoolStringArray( "luisboch.field_of_view" )
-
 [input]
 
 move_left={
