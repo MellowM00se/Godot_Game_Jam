@@ -2,12 +2,12 @@
 
 [ext_resource path="res://Assets/Tilesets/Floors.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tilesets/Walls.tres" type="TileSet" id=2]
-[ext_resource path="res://Actors/Player/Chameleon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Backgrounds/JungleTemp.png" type="Texture" id=4]
 [ext_resource path="res://Actors/Enemies/SurCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Actors/Enemies/MeleeEnemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Actors/Enemies/RangedEnemies.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Actors/Enemies/StaticCamera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Actors/Player/Monkey.tscn" type="PackedScene" id=9]
 
 [node name="Main" type="Node2D"]
 
@@ -43,11 +43,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Chameleon" parent="." instance=ExtResource( 3 )]
-position = Vector2( 393.604, 513.5 )
+[node name="Monkey" parent="." instance=ExtResource( 9 )]
+position = Vector2( 377.567, 519.09 )
+walk_speed = 6.0
 
-[node name="Camera2D" type="Camera2D" parent="Chameleon"]
-position = Vector2( 60.4447, -0.638245 )
+[node name="Camera2D" type="Camera2D" parent="Monkey"]
+position = Vector2( 76.4817, -6.22827 )
 current = true
 offset_v = -1.0
 editor_draw_drag_margin = true
