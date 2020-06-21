@@ -15,10 +15,19 @@ extents = Vector2( 32, 32 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="meleeEnemy" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1280, 800 )
+<<<<<<< Updated upstream
+position = Vector2( 1282.72, 963.245 )
 
 [node name="meleeEnemy2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 256, 864 )
+position = Vector2( 556.281, 955.083 )
+=======
+position = Vector2( 1299.46, 879.56 )
+scale = Vector2( 2, 2 )
+
+[node name="meleeEnemy2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 528.386, 888.134 )
+scale = Vector2( 2, 2 )
+>>>>>>> Stashed changes
 
 [node name="rangedEnemies" parent="." instance=ExtResource( 3 )]
 position = Vector2( 2240, -38.5 )
