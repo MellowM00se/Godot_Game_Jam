@@ -12,7 +12,8 @@ var can_attack = true
 var direction =  1
 var motion = Vector2()
 var knockBack = 200
-
+var turn = false
+var can_turn = false
 
 
 const UP = Vector2(0,-1)
@@ -20,7 +21,8 @@ const UP = Vector2(0,-1)
 # Called when the node enters the scene tree for the first time.
 
 func _process(delta):
-
+	
+	
 
 	match $stateMachine.state:
 
@@ -52,23 +54,54 @@ func applyMovement():
 
 
 	if not $rightRay.is_colliding():
+		turn = true
 		direction = -1
-		$Sprite.flip_h = true
-		$pivot.scale.x = -1
+		deactivateRaycast()
 	elif not $leftRay.is_colliding():
+		turn = true
 		direction = 1
-		$Sprite.flip_h = false
-		$pivot.scale.x = 1
+		deactivateRaycast()
 	elif $rightWall.is_colliding():
-		direction = -1
-		$Sprite.flip_h = true
-		$pivot.scale.x = -1
+		turn = true
+		direction =  -1
+		deactivateRaycast()
 	elif $leftWall.is_colliding():
+		turn =  true
 		direction = 1
-		$Sprite.flip_h = false
-		$pivot.scale.x = 1
+		deactivateRaycast()
 	motion.x = direction * speed
 
+func activateRaycast():
+	
+	$rightRay.enabled = true
+	$leftRay.enabled = true
+	$rightWall.enabled = true
+	$leftWall.enabled = true
+
+	
+
+
+func deactivateRaycast():
+	
+	$rightRay.enabled = false
+	$leftRay.enabled = false
+	$rightWall.enabled = false
+	$leftWall.enabled = false
+
+
+func turnCharacter():
+	if direction == 1:
+		$Sprite.flip_h = false
+		$pivot.scale.x = direction
+	elif direction == -1:
+		$Sprite.flip_h = true
+		$pivot.scale.x = direction
+	can_turn = false
+	turn = false
+	
+	yield(get_tree(),"idle_frame")
+	activateRaycast()
+	
 
 func _physics_process(delta):
 
@@ -104,3 +137,7 @@ func _on_attackBox_body_entered(body):
 
 	if groups.has("player"):
 		pass
+
+
+func _on_turnTimer_timeout():
+	can_turn = true

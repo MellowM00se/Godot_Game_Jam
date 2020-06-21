@@ -23,14 +23,14 @@ _global_script_class_icons={
 config/name="Godot Wild Jam 22"
 config/icon="res://icon.png"
 
-[editor_plugins]
-
-enabled=PoolStringArray( "luisboch.field_of_view" )
-
 [display]
 
 window/size/width=1280
 window/size/height=720
+
+[editor_plugins]
+
+enabled=PoolStringArray( "luisboch.field_of_view" )
 
 [input]
 

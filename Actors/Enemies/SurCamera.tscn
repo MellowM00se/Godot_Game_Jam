@@ -36,7 +36,7 @@ scale = Vector2( 1, 2 )
 script = ExtResource( 1 )
 field_of_view = 30
 warn_distance = 400
-danger_distance = 400
+danger_distance = 350
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "rotate"
