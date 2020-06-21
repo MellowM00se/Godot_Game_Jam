@@ -49,28 +49,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MonkeyMode" type="Label" parent="Options"]
+[node name="ChameleonMode" type="Label" parent="Options"]
 margin_right = 512.0
 margin_bottom = 45.0
-custom_fonts/font = SubResource( 1 )
-text = "Monkey mode"
-align = 1
-valign = 1
-
-[node name="Pointer" type="Sprite" parent="Options/MonkeyMode"]
-position = Vector2( 66, 22 )
-texture = ExtResource( 2 )
-
-[node name="ChameleonMode" type="Label" parent="Options"]
-margin_top = 55.0
-margin_right = 512.0
-margin_bottom = 100.0
 custom_fonts/font = SubResource( 1 )
 text = "Chameleon mode"
 align = 1
 valign = 1
 
 [node name="Pointer" type="Sprite" parent="Options/ChameleonMode"]
+position = Vector2( 66, 22 )
+texture = ExtResource( 2 )
+
+[node name="MonkeyMode" type="Label" parent="Options"]
+margin_top = 55.0
+margin_right = 512.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 1 )
+text = "Monkey mode"
+align = 1
+valign = 1
+
+[node name="Pointer" type="Sprite" parent="Options/MonkeyMode"]
 visible = false
 position = Vector2( 66, 22 )
 texture = ExtResource( 2 )
