@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Actors/Inherited/PlayerBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Sprites/Player/Monkey.png" type="Texture" id=2]
@@ -27,10 +27,38 @@ resource_local_to_scene = true
 resource_name = "Jump"
 length = 0.4
 loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_local_to_scene = true
-resource_name = "Walk"
+resource_name = "Throw"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 12, 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_local_to_scene = true
 length = 0.6
 loop = true
 step = 0.15
@@ -47,9 +75,9 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 36, 48 )
 
 [node name="Monkey" instance=ExtResource( 1 )]
@@ -62,18 +90,20 @@ walk_speed = 5.0
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
+frame = 15
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/Idle = SubResource( 1 )
 anims/Jump = SubResource( 2 )
-anims/Walk = SubResource( 3 )
+anims/Throw = SubResource( 3 )
+anims/Walk = SubResource( 4 )
 
 [node name="AnimationTree" parent="AnimationPlayer" index="0"]
-parameters/playback = SubResource( 4 )
+parameters/playback = SubResource( 5 )
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( 7.5, 9 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Action1" type="Node2D" parent="." index="6"]
 
