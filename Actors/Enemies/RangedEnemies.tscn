@@ -165,13 +165,13 @@ shape = SubResource( 2 )
 [node name="rightGroundRay" type="RayCast2D" parent="."]
 position = Vector2( 128, 0 )
 enabled = true
-cast_to = Vector2( 0, 200 )
+cast_to = Vector2( 0, 140 )
 collision_mask = 8
 
 [node name="leftGroundRay" type="RayCast2D" parent="."]
 position = Vector2( -128, 0 )
 enabled = true
-cast_to = Vector2( 0, 200 )
+cast_to = Vector2( 0, 140 )
 collision_mask = 8
 
 [node name="rightWallRay" type="RayCast2D" parent="."]
