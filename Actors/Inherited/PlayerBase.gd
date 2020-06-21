@@ -18,7 +18,7 @@ var move_state = Move.STAND
 var jump_velocity: float
 var gravity: float
 
-onready var state_anim = $AnimationPlayer/AnimationTree.get("parameters/playback")
+onready var state_anim: AnimationNodeStateMachinePlayback = $AnimationPlayer/AnimationTree.get("parameters/playback")
 onready var tween: Tween = $Tween
 
 # built-in methods
@@ -63,13 +63,14 @@ func _anim_state():
 		$Sprite.flip_h = true
 	elif _get_x_movement() > 0 and $Sprite.flip_h == true:
 		$Sprite.flip_h = false
-	if is_on_floor():
-		if _get_x_movement() == 0:
-			state_anim.travel("Idle")
+	if state_anim.get_current_node() != "Throw":
+		if is_on_floor():
+			if _get_x_movement() == 0:
+				state_anim.travel("Idle")
+			else:
+				state_anim.travel("Walk")
 		else:
-			state_anim.travel("Walk")
-	else:
-		state_anim.travel("Jump")
+			state_anim.travel("Jump")
 
 
 func _get_x_movement() -> float:

@@ -90,7 +90,7 @@ walk_speed = 5.0
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
-frame = 15
+frame = 1
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/Idle = SubResource( 1 )
@@ -112,4 +112,4 @@ wait_time = 0.75
 one_shot = true
 
 [node name="PoopPos" type="Position2D" parent="Action1" index="1"]
-position = Vector2( 42, -39 )
+position = Vector2( -16, -27 )
