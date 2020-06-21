@@ -27,9 +27,8 @@ func _on_option_selected(index):
 			# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://Environment/Main.tscn")
 		"MonkeyMode":
-			# ToDo
-			print("Selected option \"", options_list[index],"\"")
-			selector.can_select = true
+			# warning-ignore:return_value_discarded
+			get_tree().change_scene("res://Environment/Main_Monkey.tscn")
 		"Credits":
 			# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://UI/Credits.tscn")
