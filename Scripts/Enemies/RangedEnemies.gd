@@ -13,6 +13,7 @@ var playerDetected = false
 var canAttack = true
 
 
+onready var music = get_parent().get_node("Music")
 
 var direction = 1
 var motion =  Vector2()
@@ -31,7 +32,7 @@ func fireBullet():
 	get_parent().add_child(bullet)
 	bullet.global_position =  $pivot.global_position
 	bullet.direction = direction
-	
+
 	canAttack = false
 	$reload.start()
 
@@ -88,6 +89,7 @@ func _on_detector_body_entered(body):
 	var groups = body.get_groups()
 
 	if groups.has("player"):
+		music.transition("Tense")
 		playerDetected = true
 
 
@@ -96,6 +98,7 @@ func _on_detector_body_exited(body):
 	var groups = body.get_groups()
 
 	if groups.has("player"):
+		music.transition("Calm")
 		playerDetected = false
 
 

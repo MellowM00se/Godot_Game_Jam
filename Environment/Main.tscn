@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Tilesets/Floors.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tilesets/Walls.tres" type="TileSet" id=2]
@@ -9,8 +9,22 @@
 [ext_resource path="res://Actors/Enemies/RangedEnemies.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Actors/Enemies/StaticCamera.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Actors/Player/Monkey.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/Environment/Music.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Audio/Music/GWJ22-2.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Audio/Music/GWJ22-1.wav" type="AudioStream" id=12]
 
 [node name="Main" type="Node2D"]
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[node name="Calm" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 12 )
+
+[node name="Tense" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 11 )
+
+[node name="Tween" type="Tween" parent="Music"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

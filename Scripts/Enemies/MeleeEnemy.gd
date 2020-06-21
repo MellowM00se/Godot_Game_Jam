@@ -16,13 +16,16 @@ var turn = false
 var can_turn = false
 
 
+onready var music = get_parent().get_node("Music")
+
+
 const UP = Vector2(0,-1)
 
 # Called when the node enters the scene tree for the first time.
 
 func _process(delta):
-	
-	
+
+
 
 	match $stateMachine.state:
 
@@ -72,17 +75,17 @@ func applyMovement():
 	motion.x = direction * speed
 
 func activateRaycast():
-	
+
 	$rightRay.enabled = true
 	$leftRay.enabled = true
 	$rightWall.enabled = true
 	$leftWall.enabled = true
 
-	
+
 
 
 func deactivateRaycast():
-	
+
 	$rightRay.enabled = false
 	$leftRay.enabled = false
 	$rightWall.enabled = false
@@ -98,10 +101,10 @@ func turnCharacter():
 		$pivot.scale.x = direction
 	can_turn = false
 	turn = false
-	
+
 	yield(get_tree(),"idle_frame")
 	activateRaycast()
-	
+
 
 func _physics_process(delta):
 
@@ -121,6 +124,7 @@ func _on_detectorPlayer_body_entered(body):
 	var groups = body.get_groups()
 
 	if groups.has("player"):
+		music.transition("Tense")
 		playerDetected = true
 
 
@@ -129,6 +133,7 @@ func _on_detectorPlayer_body_exited(body):
 	var groups = body.get_groups()
 
 	if groups.has("player"):
+		music.transition("Calm")
 		playerDetected = false
 
 
