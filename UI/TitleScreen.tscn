@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Backgrounds/Title.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Pointer.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Fonts/PearSoda.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scripts/UI/TitleScreen.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/UI/MenuSelector.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuSelector" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.12549, 0.203922, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.65
+texture = ExtResource( 1 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="VBoxContainer" parent="."]
+anchor_left = 0.3
+anchor_top = 0.65
+anchor_right = 0.7
+anchor_bottom = 0.65
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChameleonMode" type="Label" parent="Options"]
+margin_right = 512.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 1 )
+text = "Chameleon mode"
+align = 1
+valign = 1
+
+[node name="Pointer" type="Sprite" parent="Options/ChameleonMode"]
+position = Vector2( 66, 22 )
+texture = ExtResource( 2 )
+
+[node name="MonkeyMode" type="Label" parent="Options"]
+margin_top = 55.0
+margin_right = 512.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 1 )
+text = "Monkey mode"
+align = 1
+valign = 1
+
+[node name="Pointer" type="Sprite" parent="Options/MonkeyMode"]
+visible = false
+position = Vector2( 66, 22 )
+texture = ExtResource( 2 )
+
+[node name="Credits" type="Label" parent="Options"]
+margin_top = 110.0
+margin_right = 512.0
+margin_bottom = 155.0
+custom_fonts/font = SubResource( 1 )
+text = "Credits"
+align = 1
+valign = 1
+
+[node name="Pointer" type="Sprite" parent="Options/Credits"]
+visible = false
+position = Vector2( 66, 22 )
+texture = ExtResource( 2 )
+
+[node name="Quit" type="Label" parent="Options"]
+margin_top = 165.0
+margin_right = 512.0
+margin_bottom = 210.0
+custom_fonts/font = SubResource( 1 )
+text = "Quit"
+align = 1
+valign = 1
+
+[node name="Pointer" type="Sprite" parent="Options/Quit"]
+visible = false
+position = Vector2( 66, 22 )
+texture = ExtResource( 2 )
