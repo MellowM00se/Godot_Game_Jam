@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Monkey (Run).png-c43a31144a7da49ac1a79f3d3a55c652.stex"
+path="res://.import/JungleTemp.png-4dc1d28b17b9b638fd515a8ebeb937f7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Player/Monkey (Run).png"
-dest_files=[ "res://.import/Monkey (Run).png-c43a31144a7da49ac1a79f3d3a55c652.stex" ]
+source_file="res://Assets/Backgrounds/JungleTemp.png"
+dest_files=[ "res://.import/JungleTemp.png-4dc1d28b17b9b638fd515a8ebeb937f7.stex" ]
 
 [params]
 
