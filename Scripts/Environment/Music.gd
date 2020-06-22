@@ -15,10 +15,10 @@ func transition(to):
 	to = get_node(to)
 	to.play()
 	$Tween.interpolate_property(
-		from, "volume", linear2db(1), linear2db(0), transition_time
+		from, "volume_db", linear2db(1), linear2db(0), transition_time
 	)
 	$Tween.interpolate_property(
-		to, "volume", linear2db(0), linear2db(1), transition_time
+		to, "volume_db", linear2db(0), linear2db(1), transition_time
 	)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
