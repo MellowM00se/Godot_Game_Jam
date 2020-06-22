@@ -23,6 +23,8 @@ motion_offset = Vector2( 500, 0 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 8640, 320 )
 
 [node name="Walls" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
