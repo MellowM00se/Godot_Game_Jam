@@ -46,11 +46,13 @@ func _restore_hiding(delta):
 
 
 func _hide():
+	remove_from_group("player")
 	action1.is_hiding = true
 	_modulate($Sprite, Color(1, 1, 1, 0.3))
 
 
 func _unhide():
+	add_to_group("player")
 	action1.is_hiding = false
 	_modulate($Sprite, Color.white)
 
